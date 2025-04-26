@@ -18,15 +18,19 @@ interface iProps {
   blok: iContent
 }
 
-defineProps<iProps>()
+const props = defineProps<iProps>()
+
+onMounted(() => {
+  console.log(props.blok.title)
+})
 </script>
 
 <template>
   <div class="image-grid">
     <div class="container image-grid__wrapper">
       <RichText
-        v-if="blok?.title"
-        :text="blok.title"
+        v-if="blok?.title?.[0]?.text"
+        :text="blok?.title?.[0]?.text"
         class="image-grid__title"
       />
       <ul
