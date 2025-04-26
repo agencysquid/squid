@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import Richtext from 'storyblok-js-client'
+import type { ISbRichtext } from 'storyblok-js-client'
 
 interface iContent {
-  title?: string | Richtext
-  main_text: string | Richtext
+  title?: string | ISbRichtext
+  main_text: string | ISbRichtext
   aligned?: boolean
 }
 

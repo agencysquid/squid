@@ -1,5 +1,5 @@
 import Scrolling from './Scrolling'
-import { resize } from './utils/ea'
+import { resize } from '@emotionagency/utils'
 
 export class ExpertiseScroller extends Scrolling {
   constructor($wrapper, $el, $children) {

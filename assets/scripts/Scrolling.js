@@ -1,4 +1,4 @@
-import { clamp, raf } from './utils/ea'
+import { clamp, raf } from '@emotionagency/utils'
 
 export default class Scrolling {
   constructor($el, $parent) {

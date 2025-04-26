@@ -2,11 +2,6 @@
 import { useTransition } from '~/composables/transition'
 import { useBlogStories } from '~/composables/stories/blog.story'
 import { useBreakLine } from '~/composables/breakLine'
-import { pageTransition } from '~/assets/scripts/transition'
-
-definePageMeta({
-  pageTransition,
-})
 
 useTransition()
 useObserver('.section')

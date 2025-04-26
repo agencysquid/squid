@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { useTransition } from '~/composables/transition'
 import { useExpertiseStory } from '~/composables/stories/expertise.story'
-import { pageTransition } from '~/assets/scripts/transition'
-
-definePageMeta({
-  pageTransition,
-})
 
 useTransition()
 useObserver('.section')

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 onMounted(async () => {
   const { SmoothScroll } = await import('@emotionagency/smoothscroll')
-  const { raf } = await import('@/assets/scripts/utils/ea')
+  const { raf } = await import('@emotionagency/utils')
 
   window.ss = new SmoothScroll({
     mobile: true,

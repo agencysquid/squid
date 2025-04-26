@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import Richtext from 'storyblok-js-client'
-import { iImage } from '~/types/story'
+import type { ISbRichtext } from 'storyblok-js-client'
+import type { iImage } from '~/types/story'
 import TheVideo from './TheVideo.vue'
 
 interface iProps {
@@ -9,7 +9,7 @@ interface iProps {
   category?: string
   date?: string | number
   author?: string
-  description?: string | Richtext | object
+  description?: string | ISbRichtext
   image?: iImage
   video?: string
   link?: string
@@ -45,7 +45,7 @@ const formattedDescription = computed(() => {
   <li class="thoughts-2__li">
     <NuxtLink :to="link" class="thoughts-2__link">
       <div v-if="video">
-        <TheVideo :videoId="video" class="thoughts-2__video" />
+        <TheVideo :video-id="video" class="thoughts-2__video" />
       </div>
       <TheImage
         v-else-if="image?.filename"

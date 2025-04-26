@@ -1,4 +1,4 @@
-import { clamp, matrixTransform, raf, resize } from '@/assets/scripts/utils/ea'
+import { clamp, matrixTransform, raf, resize } from '@emotionagency/utils'
 import imagesLoaded from 'imagesloaded'
 
 export class HorizontalScroll {

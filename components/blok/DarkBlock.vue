@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import Richtext from 'storyblok-js-client'
+import type { ISbRichtext } from 'storyblok-js-client'
 
 interface iContent {
-  title: Richtext
-  text: Richtext
+  title: ISbRichtext
+  text: ISbRichtext
 }
 
 interface iProps {
@@ -14,11 +14,19 @@ defineProps<iProps>()
 </script>
 
 <template>
-  <div class="section section--nm dark-block">
+  <div v-if="blok" class="section section--nm dark-block">
     <div class="container dark-block__wrapper">
       <div class="grid dark-block__text-wrapper">
-        <RichText :text="blok.title" class="dark-block__title" />
-        <RichText class="dark-block__text" :text="blok.text" />
+        <RichText
+          v-if="blok?.title"
+          :text="blok?.title"
+          class="dark-block__title"
+        />
+        <RichText
+          v-if="blok?.text"
+          class="dark-block__text"
+          :text="blok?.text"
+        />
       </div>
     </div>
   </div>

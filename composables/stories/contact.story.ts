@@ -6,7 +6,7 @@ export const useContactStory = async () => {
   const res = await useGetStory('contact')
   initStory.value = res.value
 
-  if (process.client) {
+  if (import.meta.client) {
     useStoryblokBridge(initStory.value.id, evStory => {
       initStory.value = evStory
     })

@@ -1,3 +1,4 @@
+import type { iStory } from '~/types/story'
 import { useGetStory } from './getStory'
 
 export const useExpertiseStory = async () => {
@@ -6,9 +7,9 @@ export const useExpertiseStory = async () => {
   const res = await useGetStory('expertise')
   initStory.value = res.value
 
-  if (process.client) {
+  if (import.meta.client) {
     useStoryblokBridge(initStory.value.id, evStory => {
-      initStory.value = evStory
+      initStory.value = evStory as unknown as iStory
     })
   }
 

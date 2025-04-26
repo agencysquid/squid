@@ -2,12 +2,8 @@
 import { useTransition } from '~/composables/transition'
 import { useProjectsStories } from '~/composables/stories/projects.story'
 import { useHomeStory } from '~~/composables/stories/home.story'
-import { pageTransition } from '~/assets/scripts/transition'
-import { delayPromise } from '~/assets/scripts/utils/ea'
 
-definePageMeta({
-  pageTransition,
-})
+import { delayPromise } from '@emotionagency/utils'
 
 useTransition()
 useObserver('.section')

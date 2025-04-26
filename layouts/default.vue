@@ -7,7 +7,7 @@ const GOOGLE_TM_ID = 'GTM-W9CZGXJ'
 
 useFonts()
 
-if (process.client) {
+if (import.meta.client) {
   gsap.registerPlugin(ScrollTrigger)
 }
 
@@ -22,7 +22,7 @@ onMounted(async () => {
   hello()
 
   const { winSizes } = await import('~/assets/scripts/utils/winSizes')
-  const { resize } = await import('@/assets/scripts/utils/ea')
+  const { resize } = await import('@emotionagency/utils')
   resize.on(winSizes)
 
   await parallaxInit()
@@ -38,8 +38,8 @@ useHead({
   },
   script: [
     {
-      hid: 'gtm',
-      children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      id: 'gtm',
+      value: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -50,6 +50,11 @@ useHead({
       src: 'https://player.vimeo.com/api/player.js',
     },
   ],
+})
+
+onErrorCaptured(error => {
+  console.error('Error in app.vue:', error)
+  return false
 })
 </script>
 

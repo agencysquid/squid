@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { iStory } from '~/types/story'
+import type { iStory } from '~/types/story'
 
 interface iPoint {
   _uid: string
@@ -61,8 +61,8 @@ onMounted(() => {
       <div ref="$scrollWrapper" class="expertise-6__scroll-wrapper">
         <ul ref="$wrapper" class="expertise-6__list-items">
           <li
-            ref="$children"
             v-for="item in items"
+            ref="$children"
             :key="item._uid"
             class="expertise-6__item"
           >

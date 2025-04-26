@@ -1,4 +1,4 @@
-import Richtext from 'storyblok-js-client'
+import type { ISbRichtext } from 'storyblok-js-client'
 
 export interface iMeta {
   title: string
@@ -21,16 +21,15 @@ interface iButton {
   action?: string
 }
 
-export interface iStory {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  content: any
+export interface iStory<T = any> {
+  content: T
   slug: string
   full_slug: string
   created_at: string
   first_published_at: string
-  published_at: string
+  published_at: number
   name: string
-  _uid?: string
+  _uid: string
   uuid: string
   id: number
   title?: string
@@ -51,7 +50,7 @@ interface iBlogVideo {
 
 export interface iPostBlock {
   _uid: string
-  text_formatting: Richtext
+  text_formatting: ISbRichtext
   button: iButton[]
   youtube_video: iBlogVideo[]
 }
@@ -68,5 +67,5 @@ export interface iPost {
 }
 
 export interface iStyledText {
-  text: Richtext
+  text: ISbRichtext
 }

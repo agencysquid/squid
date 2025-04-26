@@ -11,14 +11,14 @@ interface iProps {
 
 const props = defineProps<iProps>()
 
-const storyapi = useStoryblokApi()
 const richtext = computed(() => {
   try {
     if (typeof props.text === 'string') return props.text
 
     if (Array.isArray(props.text)) return props.text.join('')
-    return storyapi.richTextResolver.render(props.text)
+    return renderRichText(props.text)
   } catch (error) {
+    console.error(error)
     return ''
   }
 })

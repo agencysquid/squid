@@ -1,5 +1,18 @@
 <script setup lang="ts">
-const inputsList = reactive([
+interface iInput {
+  title: string
+  required: boolean
+  id: string
+  name: string
+  placeholder: string
+  type: string
+  validation?: string
+  validationText?: string
+  error: boolean
+  value: string
+}
+
+const inputsList = reactive<iInput[]>([
   {
     title: 'Name',
     required: true,
@@ -90,15 +103,15 @@ const onChange = val => {
     <div class="form__inputs-wrapper">
       <TheInput
         v-for="(input, idx) in inputsList"
+        :id="input.id"
         ref="$inputs"
         :key="idx"
         :required="input.required"
-        :id="input.id"
         :title="input.title"
         :name="input.name"
         :type="input.type"
         :validation="input.validation"
-        :validationText="input.validationText"
+        :validation-text="input.validationText"
         :error="input.error"
         :placeholder="input.placeholder"
         @input-value="onChange"

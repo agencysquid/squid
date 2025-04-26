@@ -13,7 +13,11 @@ const props = withDefaults(defineProps<iProps>(), {
 const $el = ref<HTMLElement | null>(null)
 
 const animate = () => {
-  const { top, left } = $el.value?.getBoundingClientRect()
+  if (!$el.value) {
+    return
+  }
+
+  const { top, left } = $el.value.getBoundingClientRect()
 
   if (props.axis === 'y') {
     if (top <= window.innerHeight * props.offset) {

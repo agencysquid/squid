@@ -1,5 +1,4 @@
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export class OnScrollColor {
   constructor($el, $overlay, opts = {}) {

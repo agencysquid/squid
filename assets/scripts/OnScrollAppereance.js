@@ -1,7 +1,5 @@
 import gsap from 'gsap'
 
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
 export class OnScrollAppereance {
   constructor($el, $wrapper, opts = {}) {
     this.$el = $el

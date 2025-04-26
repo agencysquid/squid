@@ -1,5 +1,4 @@
-import { Ref } from 'nuxt/dist/app/compat/capi'
-import { iStory } from '~/types/story'
+import type { iStory } from '~/types/story'
 
 import { useGetStories } from './getStories'
 
@@ -44,18 +43,18 @@ export const useBlogStories: tBlogStories = async () => {
     return stories.value.find(story => story.uuid === featuredId)
   })
 
-  if (process.client) {
+  if (import.meta.client) {
     useStoryblokBridge(story.value.id, evStory => {
-      story.value = evStory
+      story.value = evStory as unknown as iStory
     })
   }
 
   const listenStory = (slug: string) => {
-    if (process.client) {
+    if (import.meta.client) {
       const currentStory = stories.value.find(story => story.slug === slug)
       useStoryblokBridge(currentStory.id, evStory => {
         stories.value = stories.value.filter(story => story.slug !== slug)
-        stories.value = [...stories.value, evStory]
+        stories.value = [...stories.value, evStory as unknown as iStory]
       })
     }
   }

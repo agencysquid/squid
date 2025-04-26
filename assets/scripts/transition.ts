@@ -1,5 +1,5 @@
 import gsap from 'gsap'
-import { TransitionProps } from 'nuxt/dist/app/compat/capi'
+import type { TransitionProps } from 'vue'
 import { resetScroll } from './utils/resetScroll'
 
 export const pageTransition: TransitionProps = {
@@ -7,9 +7,11 @@ export const pageTransition: TransitionProps = {
   css: false,
   appear: true,
   onEnter(el, done) {
-    document.documentElement.style.cursor = 'auto'
     setTimeout(() => {
       resetScroll()
+
+      document.documentElement.style.cursor = 'auto'
+      document.body.style.pointerEvents = 'auto'
     }, 150)
 
     gsap.fromTo(
@@ -21,6 +23,8 @@ export const pageTransition: TransitionProps = {
 
   onLeave(el, done) {
     document.documentElement.style.cursor = 'wait'
+    document.body.style.pointerEvents = 'none !important'
+
     setTimeout(() => {
       window.ss.isFixed = true
     }, 200)

@@ -1,4 +1,4 @@
-import { raf, delayPromise } from '~/assets/scripts/utils/ea'
+import { raf, delayPromise } from '@emotionagency/utils'
 
 export const useBottomBlock = () => {
   const bottomText = ref('Scroll')

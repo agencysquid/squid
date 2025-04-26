@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { iImage } from '~/types/story'
+import type { iImage } from '~/types/story'
 
 interface iProps {
   name?: string

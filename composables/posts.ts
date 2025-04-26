@@ -1,5 +1,4 @@
-import { Ref } from 'nuxt/dist/app/compat/capi'
-import { iStory } from '~/types/story'
+import type { iStory } from '~/types/story'
 
 export const usePosts = (posts: Ref<iStory[]>, routePath: string) => {
   const filteredPosts = ref<iStory[]>(posts.value)
@@ -9,7 +8,7 @@ export const usePosts = (posts: Ref<iStory[]>, routePath: string) => {
 
   const selectCategory = (category: string) => {
     try {
-      if (process.client) {
+      if (import.meta.client) {
         setTimeout(() => {
           window?.parallax && window?.parallax?.update()
         }, 500)

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { iAccordionItem } from '~/types/accordion'
-import { keysGenerator } from '~/assets/scripts/utils/ea'
+import type { iAccordionItem } from '~/types/accordion'
+import { keysGenerator } from '@emotionagency/utils'
 import type { AccordionItem } from '#build/components'
 
 interface iProps {

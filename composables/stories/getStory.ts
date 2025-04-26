@@ -1,4 +1,4 @@
-import { iStory } from '~/types/story'
+import type { iStory } from '~/types/story'
 
 type tResStory = {
   data: {
@@ -8,13 +8,15 @@ type tResStory = {
 
 export const useGetStory = async (route: string) => {
   const response = ref<iStory>(null)
-  const retryCounter = ref(0)
-  const config = useRuntimeConfig()
 
+  const config = useRuntimeConfig()
   const storyapi = useStoryblokApi()
+
   const { isInEditor } = useLoadState()
 
-  const getStory = async () => {
+  const maxRetries = 3
+
+  const getStory = async (attempt = 0) => {
     if (!response.value) {
       try {
         const { data }: tResStory = await storyapi.get(`cdn/stories/${route}`, {
@@ -29,14 +31,16 @@ export const useGetStory = async (route: string) => {
 
         response.value = data.story
       } catch (e) {
-        console.log(e.message)
+        console.error(`Story fetch failed (attempt ${attempt + 1}):`, e.message)
 
-        if (retryCounter.value > 2) {
-          throw new Error("Can't get story")
+        if (attempt + 1 >= maxRetries) {
+          alert(
+            'An error with our server occurred. Please try reloading the page.'
+          )
+          return
         }
 
-        await getStory()
-        retryCounter.value = retryCounter.value + 1
+        await getStory(attempt + 1)
       }
     }
   }

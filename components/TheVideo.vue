@@ -12,7 +12,6 @@ const $el = ref(null)
 
 onMounted(() => {
   const containerHeight = window.innerHeight
-  const containerWidth = window.innerWidth
 
   // @ts-ignore
   new window.Vimeo.Player($el.value, {

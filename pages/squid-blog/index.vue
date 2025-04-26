@@ -3,11 +3,6 @@ import gsap from 'gsap'
 import { useTransition } from '~/composables/transition'
 import { usePosts } from '~/composables/posts'
 import { useBlogStories } from '~/composables/stories/blog.story'
-import { pageTransition } from '~/assets/scripts/transition'
-
-definePageMeta({
-  pageTransition,
-})
 
 useTransition()
 useObserver('.section')

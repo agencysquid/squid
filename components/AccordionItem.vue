@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { resize } from '~/assets/scripts/utils/ea/resize/resize'
+import { resize } from '@emotionagency/utils'
 
 interface iProps {
   title: string

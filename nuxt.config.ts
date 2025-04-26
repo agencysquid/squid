@@ -1,11 +1,23 @@
 export default defineNuxtConfig({
   css: ['@/assets/styles/index.scss'],
+  devtools: { enabled: false },
 
   build: {
     transpile: ['fsevents'],
   },
 
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          silenceDeprecations: ['import', 'mixed-decls'],
+        },
+      },
+    },
+  },
+
   modules: [
+    '@nuxt/eslint',
     [
       '@storyblok/nuxt',
       {
@@ -16,6 +28,12 @@ export default defineNuxtConfig({
       },
     ],
   ],
+
+  eslint: {
+    config: {
+      typescript: true,
+    },
+  },
 
   runtimeConfig: {
     public: {
@@ -31,4 +49,6 @@ export default defineNuxtConfig({
   typescript: {
     strict: false,
   },
+
+  compatibilityDate: '2025-04-26',
 })
