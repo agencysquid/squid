@@ -26,15 +26,16 @@ defineProps<iProps>()
     <div class="container image-grid__wrapper">
       <RichText
         v-if="blok?.title"
-        :text="blok?.title"
+        :text="blok.title"
         class="image-grid__title"
       />
       <ul
+        v-if="blok?.image?.length"
         class="image-grid__img-list"
         :class="blok?.title && 'image-grid__img-list--with-title'"
       >
         <li
-          v-for="item in blok?.image"
+          v-for="item in blok.image"
           :key="item._uid"
           class="image-grid__li"
           :data-parallax="!blok?.disable_parallax && -0.1"
