@@ -22,7 +22,7 @@ const breakLine = useBreakLine()
       <RichText
         v-if="blok?.title"
         class="text-block-2__title"
-        :text="blok.title[0].text"
+        :text="blok?.title?.[0]?.text"
       />
 
       <p
