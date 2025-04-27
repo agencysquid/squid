@@ -19,8 +19,12 @@ const posts = computed(() => {
 })
 
 const post = computed(() => {
-  return stories.value.find(story => story.slug === slug).content
+  return stories.value?.find(story => story.slug === slug)?.content
 })
+
+if (!post.value) {
+  navigateTo('/squid-blog/')
+}
 
 const activeCategory = computed(() => {
   return post?.value?.category?.name
@@ -30,12 +34,12 @@ const activeTags = computed(() => {
   const activeIds = post?.value?.tags
 
   return activeIds?.map(id => {
-    return tags.value.find(story => story.uuid === id)
+    return tags.value?.find(story => story?.uuid === id)
   })
 })
 
 const prevPost = computed(() => {
-  const idx = posts.value.findIndex(post => post.slug === slug)
+  const idx = posts.value?.findIndex(post => post.slug === slug)
 
   return idx <= 0 ? posts.value[posts.value.length - 1] : posts.value[idx - 1]
 })
@@ -52,8 +56,12 @@ const lastPosts = computed(() => {
 
 const formattedDate = computed(() => {
   const date =
-    stories.value.find(story => story.slug === slug).published_at ??
-    stories.value.find(story => story.slug === slug).created_at
+    stories.value.find(story => story.slug === slug)?.published_at ??
+    stories.value.find(story => story.slug === slug)?.created_at
+
+  if (!date) {
+    return ''
+  }
 
   return useFormattedDate(date)
 })
@@ -63,7 +71,7 @@ const getFormattedDate = (date: string | number) => {
 }
 
 const getCategory = (catId: string) => {
-  return categories.value.find(story => story.uuid === catId)?.name
+  return categories.value?.find(story => story.uuid === catId)?.name
 }
 
 const breakLine = useBreakLine()
