@@ -10,7 +10,10 @@ type tResStory = {
 export const useGetStories = async (opts: ISbStoriesParams) => {
   const response = ref<iStory[]>(null)
 
+  const config = useRuntimeConfig()
+
   const storyapi = useStoryblokApi()
+  const { isInEditor } = useLoadState()
 
   const maxRetries = 3
 
@@ -19,7 +22,10 @@ export const useGetStories = async (opts: ISbStoriesParams) => {
       try {
         const { data }: tResStory = await storyapi.get('cdn/stories/', {
           sort_by: 'name:asc',
-          version: 'draft',
+          version:
+            config.public.ENVIROMENT === 'development' || isInEditor.value
+              ? 'draft'
+              : 'published',
           per_page: 100,
           cv: Date.now(),
           resolve_relations: 'roi_points.case_study',
